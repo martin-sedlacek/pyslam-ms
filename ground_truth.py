@@ -31,7 +31,7 @@ class GroundTruthType(Enum):
 
 kScaleSimple = 1 
 kScaleKitti = 1   
-kScaleTum = 20    
+kScaleTum = 20
 
 
 def groundtruth_factory(settings):
