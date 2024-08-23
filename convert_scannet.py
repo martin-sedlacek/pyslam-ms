@@ -30,7 +30,7 @@ def process_all_files(input_folder, output_file_path):
             print(f"Processed {file_name}: x={x}, y={y}, z={z}, scale={scale}")
 
 # Set the input and output paths
-input_folder = " /home/vy/datasets/scannet/scans/scene0000_00/pose"
+input_folder = "/home/vy/datasets/scannet/scans/scene0000_00/pose"
 output_file_path = " /home/vy/datasets/scannet/scans/scene0000_00/color/ground_truth.txt"
 
 # Process the files
