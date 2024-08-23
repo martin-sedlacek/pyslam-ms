@@ -6,7 +6,7 @@ def process_pose_matrix(matrix):
     x = matrix[0, 3]
     y = matrix[1, 3]
     z = matrix[2, 3]
-    scale = np.linalg.norm([x, y, z])
+    scale = 1.0 #np.linalg.norm([x, y, z])
     return x, y, z, scale
 
 def read_matrix_from_file(file_path):
