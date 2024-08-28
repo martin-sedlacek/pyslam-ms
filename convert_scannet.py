@@ -20,13 +20,11 @@ def read_matrix_from_file(file_path):
 def process_all_files(input_folder, output_file_path):
     """Process all text files in the input folder and write the results to an output file."""
     files = sorted(os.listdir(input_folder), key=lambda x: int(x.split('.')[0]))  # Sort files by name as number
-    print("HERE")
     with open(output_file_path, 'w') as output_file:
         prev_pos = None
         for file_name in files:
             file_number = int(file_name.split('.')[0])
-            print(file_number)
-            break
+            print("NUM:", file_number)
             if file_number > 99:
                 break
             file_path = os.path.join(input_folder, file_name)
