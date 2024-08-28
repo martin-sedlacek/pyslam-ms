@@ -6,7 +6,7 @@ def process_pose_matrix(matrix, prev_pos):
     x = matrix[0, 3]
     y = matrix[1, 3]
     z = matrix[2, 3]
-    scale = 1.0 if not prev_pos else np.linalg.norm(np.array((x, y, z)) - np.array(prev_pos))
+    scale = 1.0 #if not prev_pos else np.linalg.norm(np.array((x, y, z)) - np.array(prev_pos))
     return x, y, z, scale
 
 def read_matrix_from_file(file_path):
@@ -23,9 +23,7 @@ def process_all_files(input_folder, output_file_path):
     with open(output_file_path, 'w') as output_file:
         prev_pos = None
         for file_name in files:
-            file_number = int(file_name.split('.')[0])
-            print("NUM:", file_number)
-            if file_number > 99:
+            if int(file_name.split('.')[0]) > 99:
                 break
             file_path = os.path.join(input_folder, file_name)
             matrix = read_matrix_from_file(file_path)
