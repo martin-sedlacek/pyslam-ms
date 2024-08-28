@@ -20,10 +20,10 @@ Viewer.ViewpointF: 2000
 #--------------------------------------------------------------------------------------------
 
 # Camera calibration and distortion parameters (OpenCV)
-Camera.fx: 1169.621094  # Focal length in x-direction from the intrinsic matrix
-Camera.fy: 1167.105103  # Focal length in y-direction from the intrinsic matrix
-Camera.cx: 646.295044   # Principal point (x-coordinate) from the intrinsic matrix
-Camera.cy: 489.927032   # Principal point (y-coordinate) from the intrinsic matrix
+Camera.fx: 1170.187988  # Focal length in x-direction from the intrinsic matrix
+Camera.fy: 1170.187988  # Focal length in y-direction from the intrinsic matrix
+Camera.cx: 647.750000   # Principal point (x-coordinate) from the intrinsic matrix
+Camera.cy: 483.750000   # Principal point (y-coordinate) from the intrinsic matrix
 
 Camera.k1: 0.0  # (not provided)
 Camera.k2: 0.0  # (not provided)
@@ -51,7 +51,7 @@ ThDepth: 40
 #--------------------------------------------------------------------------------------------
 
 # ORB Extractor: Number of features per image
-ORBextractor.nFeatures: 1000
+ORBextractor.nFeatures: 5000 # 1000
 
 # ORB Extractor: Scale factor between levels in the scale pyramid
 ORBextractor.scaleFactor: 1.2
