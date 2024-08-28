@@ -92,6 +92,8 @@ if __name__ == "__main__":
         display2d = Display2D(cam.width, cam.height)  # pygame interface 
     else: 
         display2d = None  # enable this if you want to use opencv window
+    # TODO: debugging
+    display2d = None
 
     matched_points_plt = Mplot2d(xlabel='img id', ylabel='# matches',title='# matches')    
 
