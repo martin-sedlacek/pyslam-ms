@@ -26,7 +26,6 @@ def process_all_files(input_folder, output_file_path):
         prev_pos = None
         for file_name in files:
             file_number = int(file_name.split('.')[0])
-            print(file_number)
             if file_number > 99:
                 break
             file_path = os.path.join(input_folder, file_name)
