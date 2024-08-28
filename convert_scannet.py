@@ -24,6 +24,10 @@ def process_all_files(input_folder, output_file_path):
     with open(output_file_path, 'w') as output_file:
         prev_pos = None
         for file_name in files:
+            file_number = int(file_name.split('.')[0])
+            print(file_number)
+            if file_number > 99:
+                break
             file_path = os.path.join(input_folder, file_name)
             matrix = read_matrix_from_file(file_path)
             x, y, z, scale = process_pose_matrix(matrix, prev_pos)
@@ -33,7 +37,7 @@ def process_all_files(input_folder, output_file_path):
 
 # Set the input and output paths
 input_folder = "/home/vy/datasets/scannet/scans/scene0000_00/pose"
-output_file_path = "/home/vy/datasets/scannet/scans/scene0000_00/color/ground_truth.txt"
+output_file_path = "/home/vy/datasets/scannet/scans/scene0000_00/tmp_img_martin/ground_truth.txt"
 
 # Process the files
 process_all_files(input_folder, output_file_path)
