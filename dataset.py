@@ -113,6 +113,7 @@ class Dataset(object):
             img = None  
             #raise IOError('Cannot open dataset: ', self.name, ', path: ', self.path)        
             Printer.red('Cannot open dataset: ', self.name, ', path: ', self.path)
+            self.is_ok = False
             return img    
         
     def getTimestamp(self):

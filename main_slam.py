@@ -107,7 +107,7 @@ if __name__ == "__main__":
             img = dataset.getImageColor(img_id)
             if img is None:
                 print('image is empty')
-                #getchar()
+                getchar()
             timestamp = dataset.getTimestamp()          # get current timestamp 
             next_timestamp = dataset.getNextTimestamp() # get next timestamp 
             frame_duration = next_timestamp-timestamp 
