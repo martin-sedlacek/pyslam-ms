@@ -189,8 +189,10 @@ if __name__ == "__main__":
         
         if viewer3D is not None:
             is_paused = not viewer3D.is_paused()         
-                        
-    slam.quit()
+
+    print("I'm here!")
+    dummy_input = input("Type somthing:")
+    #slam.quit()
     
     #cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.destroyAllWindows()
