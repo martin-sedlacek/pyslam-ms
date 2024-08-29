@@ -60,7 +60,7 @@ if __name__ == "__main__":
     dataset = dataset_factory(config.dataset_settings)
 
     #groundtruth = groundtruth_factory(config.dataset_settings)
-    groundtruth = None # not actually used by Slam() class; could be used for evaluating performances 
+    groundtruth = None # not actually used by Slam() class; could be used for evaluating performances
 
     cam = PinholeCamera(config.cam_settings['Camera.width'], config.cam_settings['Camera.height'],
                         config.cam_settings['Camera.fx'], config.cam_settings['Camera.fy'],
@@ -96,8 +96,14 @@ if __name__ == "__main__":
     matched_points_plt = Mplot2d(xlabel='img id', ylabel='# matches',title='# matches')    
 
     do_step = False   
-    is_paused = False 
-    
+    is_paused = False
+
+    gt_xyz = []
+    with open("/home/vy/datasets/scannet/scans/scene0000_00/tmp_img_martin/ground_truth.txt", 'r') as file:
+        for line in file:
+            x, y, z, _ = map(float, line.split())
+            gt_xyz.append((x, y, z))
+
     img_id = 0  #180, 340, 400   # you can start from a desired frame id if needed 
     while dataset.isOk():
             
@@ -121,7 +127,31 @@ if __name__ == "__main__":
                     viewer3D.draw_map(slam)
 
                 img_draw = slam.map.draw_feature_trails(img)
-                cv2.imwrite('/home/vy/projects/lv_slam_martin/pyslam-ms/path_plot.png', img_draw)
+
+                # --------------------------------------------------------------
+                is_draw_traj_img = True
+                traj_img_size = 800
+                traj_img = np.zeros((traj_img_size, traj_img_size, 3), dtype=np.uint8)
+                half_traj_img_size = int(0.5 * traj_img_size)
+                draw_scale = 1
+
+                if is_draw_traj_img:      # draw 2D trajectory (on the plane xz)
+                    #x, y, z = vo.traj3d_est[-1]
+                    x, y, z = slam.tracking.tracking_history.relative_frame_poses[-1]
+                    #x_true, y_true, z_true = vo.traj3d_gt[-1]
+                    x_true, y_true, z_true = gt_xyz[img_id]
+
+                    draw_x, draw_y = int(draw_scale*x) + half_traj_img_size, half_traj_img_size - int(draw_scale*z)
+                    true_x, true_y = int(draw_scale*x_true) + half_traj_img_size, half_traj_img_size - int(draw_scale*z_true)
+                    cv2.circle(traj_img, (draw_x, draw_y), 1,(img_id*255/4540, 255-img_id*255/4540, 0), 1)   # estimated from green to blue
+                    cv2.circle(traj_img, (true_x, true_y), 1,(0, 0, 255), 1)  # groundtruth in red
+                    # write text on traj_img
+                    cv2.rectangle(traj_img, (10, 20), (600, 60), (0, 0, 0), -1)
+                    text = "Coordinates: x=%2fm y=%2fm z=%2fm" % (x, y, z)
+                    cv2.putText(traj_img, text, (20, 40), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1, 8)
+                    # show
+                    cv2.imwrite('/home/vy/projects/lv_slam_martin/pyslam-ms/path_plot.png', traj_img)
+                # --------------------------------------------------------------
 
                 # 2D display (image display)
                 if display2d is not None:
