@@ -121,7 +121,8 @@ if __name__ == "__main__":
                     viewer3D.draw_map(slam)
 
                 img_draw = slam.map.draw_feature_trails(img)
-                    
+                cv2.imwrite('/home/vy/projects/lv_slam_martin/pyslam-ms/path_plot.png', img_draw)
+
                 # 2D display (image display)
                 if display2d is not None:
                     display2d.draw(img_draw)

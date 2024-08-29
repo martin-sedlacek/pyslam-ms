@@ -195,20 +195,6 @@ class Mplot2d:
     def refresh(self):
         pass
 
-    def save_plot(self, filename="/home/vy/projects/lv_slam_martin/pyslam-ms/path_plot.png"):
-        """
-        Save the current plot to a file.
-
-        Parameters:
-        filename (str): The path and name of the file where the plot will be saved.
-                        The format is inferred from the file extension (e.g., .png, .jpg).
-        """
-        if hasattr(self, 'fig') and self.fig:
-            self.fig.savefig(filename)
-            print(f"Plot saved to {filename}")
-        else:
-            print("No figure found to save.")
-
 # use mplotlib figure to draw in 3D trajectories 
 class Mplot3d:
     def __init__(self, title=''):
