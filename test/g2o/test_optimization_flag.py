@@ -13,7 +13,7 @@ block_solver = g2o.BlockSolverSE3(g2o.LinearSolverEigenSE3())
 solver = g2o.OptimizationAlgorithmLevenberg(block_solver)
 opt.set_algorithm(solver)
 
-flag = g2o.Flag()
+flag = True #g2o.Flag()
 print('flag: ', flag.value)
 
 opt.set_force_stop_flag(flag)
