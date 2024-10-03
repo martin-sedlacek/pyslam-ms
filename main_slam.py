@@ -121,7 +121,8 @@ if __name__ == "__main__":
             if img is not None:
                 time_start = time.time()                  
                 slam.track(img, img_id, timestamp)  # main SLAM function 
-                                
+                print(slam.tracking.tracking_history.relative_frame_poses)
+
                 # 3D display (map display)
                 if viewer3D is not None:
                     viewer3D.draw_map(slam)

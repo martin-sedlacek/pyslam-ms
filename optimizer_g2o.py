@@ -33,7 +33,8 @@ from map_point import MapPoint
 # ------------------------------------------------------------------------------------------
 
 # optimize pixel reprojection error, bundle adjustment
-def bundle_adjustment(keyframes, points, local_window, fixed_points=False, verbose=False, rounds=10, use_robust_kernel=False, abort_flag=g2o.Flag()):
+#g2o.Flag()
+def bundle_adjustment(keyframes, points, local_window, fixed_points=False, verbose=False, rounds=10, use_robust_kernel=False, abort_flag=True):
     if local_window is None:
         local_frames = keyframes
     else:
@@ -45,7 +46,7 @@ def bundle_adjustment(keyframes, points, local_window, fixed_points=False, verbo
     #block_solver = g2o.BlockSolverSE3(g2o.LinearSolverCholmodSE3())        
     solver = g2o.OptimizationAlgorithmLevenberg(block_solver)
     opt.set_algorithm(solver)
-    opt.set_force_stop_flag(abort_flag)
+    #opt.set_force_stop_flag(abort_flag) TODO
 
     thHuberMono = math.sqrt(5.991);  # chi-square 2 DOFS 
 
